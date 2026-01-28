@@ -29,7 +29,7 @@ class Snake {
     }
   }
 
-  getPosition() {
+  get Position() {
     return this.currentPosition;
   }
 }
