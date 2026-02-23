@@ -17,6 +17,10 @@ class Snake {
     return this.currentPosition;
   }
 
+  get Direction(): Direction {
+    return this.currentDirection;
+  }
+
   move(squares: number) {
     if (this.currentDirection === "right") {
       this.currentPosition = new Point(

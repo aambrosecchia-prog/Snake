@@ -6,12 +6,17 @@ import Snake from "./Snake";
  */
 class WorldModel {
   private snake: Snake;
+  private worldWidth: number;
+  private worldHeight: number;
 
   /*
     I made a WorldModel with an existing Snake.
+    Width and height default to 10 if not given.
    */
-  constructor(snake: Snake) {
+  constructor(snake: Snake, width: number = 10, height: number = 10) {
     this.snake = snake;
+    this.worldWidth = width;
+    this.worldHeight = height;
   }
 
   /*
@@ -22,10 +27,24 @@ class WorldModel {
   }
 
   /*
-   * Now I would get the Snake in this world.
+    Now I would get the Snake in this world.
    */
   getSnake(): Snake {
     return this.snake;
+  }
+
+  /*
+   Gets the width of the world.
+   */
+  get width(): number {
+    return this.worldWidth;
+  }
+
+  /*
+    Gets the height of the world.
+   */
+  get height(): number {
+    return this.worldHeight;
   }
 }
 
