@@ -1,57 +1,54 @@
 import Snake from "./Snake";
 
-const moveSnakes = (times: number, turn: boolean = false) => {
-  const greenSnake = new Snake("green");
-  const maroonSnake = new Snake("maroon");
-  let totalSquares = 0;
+describe("Snake PT2 Tests (2D + turning)", () => {
+  it("starts at (0, 0)", () => {
+    const s = new Snake();
+    expect(s.Position.x).toBe(0);
+    expect(s.Position.y).toBe(0);
+  });
 
-  for (let i = 0; i < times; i++) {
-    const numSquares1 = Math.floor(Math.random() * 100);
-    const numSquares2 = Math.floor(Math.random() * 100);
-    greenSnake.move(numSquares1);
-    maroonSnake.move(numSquares2);
-    greenSnake.move(5);
-    totalSquares += numSquares2;
-    if (turn) {
-      const numSquares3 = Math.floor(Math.random() * 100);
-      const numSquares4 = Math.floor(Math.random() * 10);
-      greenSnake.turn();
-      maroonSnake.turn();
-      maroonSnake.move(numSquares3);
-      totalSquares -= numSquares3;
-      greenSnake.move(numSquares3);
-      maroonSnake.turn();
-      maroonSnake.turn();
-      maroonSnake.turn();
-      maroonSnake.move(numSquares4);
-      totalSquares += numSquares4;
-    }
-  }
+  it("moves right by default", () => {
+    const s = new Snake();
+    s.move(5);
+    expect(s.Position.x).toBe(5);
+    expect(s.Position.y).toBe(0);
+  });
 
-  return { actual: maroonSnake.Position, expected: totalSquares };
-};
+  it("turnLeft makes it move up", () => {
+    const s = new Snake();
+    s.turnLeft();
+    s.move(3);
+    expect(s.Position.x).toBe(0);
+    expect(s.Position.y).toBe(3);
+  });
 
-describe("Snake Tests", function () {
-  const tests = [0, 3, 10, 4].map((num, index) => moveSnakes(num, index > 2));
+  it("turnRight makes it move down", () => {
+    const s = new Snake();
+    s.turnRight();
+    s.move(2);
+    expect(s.Position.x).toBe(0);
+    expect(s.Position.y).toBe(-2);
+  });
 
-  const testDescriptions = [
-    "starts with the correct position of 0",
-    "has the correct position after 3+ random moves",
-    "has the correct position after 10+ random moves",
-    "has the correct position after 4+ random moves with turns",
-  ];
+  it("multiple turns work (left then right returns to right)", () => {
+    const s = new Snake();
 
-  testDescriptions.forEach((description, index) => {
-    it(description, () =>
-      expect(tests[index].expected).toBe(tests[index].actual),
-    );
+    s.turnLeft(); // right -> up
+    s.turnRight(); // up -> right
+    s.move(4);
+
+    expect(s.Position.x).toBe(4);
+    expect(s.Position.y).toBe(0);
+  });
+
+  it("right turn twice points left", () => {
+    const s = new Snake();
+
+    s.turnRight(); // right -> down
+    s.turnRight(); // down -> left
+    s.move(7);
+
+    expect(s.Position.x).toBe(-7);
+    expect(s.Position.y).toBe(0);
   });
 });
-
-describe("Addition", function () {
-  it("sums numbers", () => {
-    expect(1 + 1).toEqual(2);
-  });
-});
-
-export {};

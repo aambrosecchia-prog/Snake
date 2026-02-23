@@ -9,7 +9,7 @@ export default function App() {
     const out = document.getElementById("output");
     if (out) out.innerText = "OUTPUT:\n";
 
-    const purpleSnake = new Snake("purple");
+    const purpleSnake = new Snake();
     display("Purple start: " + purpleSnake.Position);
 
     purpleSnake.move(8);
@@ -19,7 +19,7 @@ export default function App() {
     purpleSnake.move(3);
     display("Purple after turn() + move(3): " + purpleSnake.Position); // expect 5
 
-    const goldSnake = new Snake("goald");
+    const goldSnake = new Snake();
     display("Gold start: " + goldSnake.Position);
 
     goldSnake.turn();
