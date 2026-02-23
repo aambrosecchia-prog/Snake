@@ -1,6 +1,5 @@
-// import Snake from "./Snake";
+import Snake from "./Snake";
 
-/*
 const moveSnakes = (times: number, turn: boolean = false) => {
   const greenSnake = new Snake("green");
   const maroonSnake = new Snake("maroon");
@@ -29,7 +28,7 @@ const moveSnakes = (times: number, turn: boolean = false) => {
     }
   }
 
-  return { actual: maroonSnake.position, expected: totalSquares };
+  return { actual: maroonSnake.Position, expected: totalSquares };
 };
 
 describe("Snake Tests", function () {
@@ -48,7 +47,6 @@ describe("Snake Tests", function () {
     );
   });
 });
-*/
 
 describe("Addition", function () {
   it("sums numbers", () => {

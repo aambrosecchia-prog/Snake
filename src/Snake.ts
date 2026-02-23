@@ -1,14 +1,8 @@
-import display from "./display";
-
-import { truncate } from "fs";
-
-// place your code on line 5 above the export statement below
-
 class Snake {
   private currentPosition: number;
   private currentDirection: number;
 
-  constructor() {
+  constructor(color: string) {
     this.currentPosition = 0;
     this.currentDirection = 0;
   }
@@ -33,7 +27,5 @@ class Snake {
     return this.currentPosition;
   }
 }
-
-
 
 export default Snake;
