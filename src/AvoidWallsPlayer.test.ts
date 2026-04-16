@@ -8,10 +8,9 @@ describe("AvoidWallsPlayer Tests", () => {
     const s = new Snake();
     const world = new WorldModel(s, 10, 10);
 
-    // move snake to left wall upper half
-    s.turnLeft(); // now facing up
+    s.turnLeft();
     s.move(6); // y = 6 (upper half)
-    s.turnLeft(); // now facing left
+    s.turnLeft();
 
     const sc = new SnakeController(world, s);
     const player = new AvoidWallsPlayer(sc);

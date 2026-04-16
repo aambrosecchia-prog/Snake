@@ -1,13 +1,11 @@
+import IWorldView from "./IWorldView";
 import Snake from "./Snake";
 
-/*
- WorldModel has one Snake (aggregation).
- The Snake is created in a different file, snake.ts, and passed to the world model.
- */
 class WorldModel {
   private snake: Snake;
   private worldWidth: number;
   private worldHeight: number;
+  private worldView: IWorldView | null;
 
   /*
     I made a WorldModel with an existing Snake.
@@ -17,6 +15,7 @@ class WorldModel {
     this.snake = snake;
     this.worldWidth = width;
     this.worldHeight = height;
+    this.worldView = null;
   }
 
   /*
@@ -24,6 +23,14 @@ class WorldModel {
    */
   update(steps: number) {
     this.snake.move(steps);
+
+    if (this.worldView !== null) {
+      this.worldView.display(this);
+    }
+  }
+
+  setView(worldView: IWorldView): void {
+    this.worldView = worldView;
   }
 
   /*
@@ -33,16 +40,10 @@ class WorldModel {
     return this.snake;
   }
 
-  /*
-   Gets the width of the world.
-   */
   get width(): number {
     return this.worldWidth;
   }
 
-  /*
-    Gets the height of the world.
-   */
   get height(): number {
     return this.worldHeight;
   }

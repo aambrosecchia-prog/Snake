@@ -35,13 +35,13 @@ class Snake {
     } else if (this.currentDirection === "up") {
       this.currentPosition = new Point(
         this.Position.x,
-        this.Position.y + squares,
+        this.Position.y - squares,
       );
     } else {
       // down
       this.currentPosition = new Point(
         this.Position.x,
-        this.Position.y - squares,
+        this.Position.y + squares,
       );
     }
   }
@@ -72,9 +72,6 @@ class Snake {
     }
   }
 
-  /**
-   * @deprecated Use turnLeft() or turnRight() instead.
-   */
   turn() {
     this.turnRight();
   }
