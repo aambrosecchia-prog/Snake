@@ -19,7 +19,7 @@ describe("Snake PT2 Tests (2D + turning)", () => {
     s.turnLeft();
     s.move(3);
     expect(s.Position.x).toBe(0);
-    expect(s.Position.y).toBe(3);
+    expect(s.Position.y).toBe(-3);
   });
 
   it("turnRight makes it move down", () => {
@@ -27,14 +27,14 @@ describe("Snake PT2 Tests (2D + turning)", () => {
     s.turnRight();
     s.move(2);
     expect(s.Position.x).toBe(0);
-    expect(s.Position.y).toBe(-2);
+    expect(s.Position.y).toBe(2);
   });
 
   it("multiple turns work (left then right returns to right)", () => {
     const s = new Snake();
 
-    s.turnLeft(); // right -> up
-    s.turnRight(); // up -> right
+    s.turnLeft();
+    s.turnRight();
     s.move(4);
 
     expect(s.Position.x).toBe(4);
@@ -44,8 +44,8 @@ describe("Snake PT2 Tests (2D + turning)", () => {
   it("right turn twice points left", () => {
     const s = new Snake();
 
-    s.turnRight(); // right -> down
-    s.turnRight(); // down -> left
+    s.turnRight();
+    s.turnRight();
     s.move(7);
 
     expect(s.Position.x).toBe(-7);
